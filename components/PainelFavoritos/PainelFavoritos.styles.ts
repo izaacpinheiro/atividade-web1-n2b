@@ -1,0 +1,1 @@
+// aqui vai ficar os elementos CSS do Painel de Favoritos

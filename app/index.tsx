@@ -1,4 +1,6 @@
+// arquivo raiz do React Native, o App.js do projeto antigo
 
+/*
 import React, { useState } from 'react';
 import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 
@@ -68,3 +70,4 @@ const styles = StyleSheet.create({
     gap: 12,
   },
 });
+*/
