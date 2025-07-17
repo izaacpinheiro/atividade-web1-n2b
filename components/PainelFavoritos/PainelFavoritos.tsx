@@ -1,1 +1,0 @@
-// passar o arquivo PainelFavoritos.jsx do projeto antigo para aqui

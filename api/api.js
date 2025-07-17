@@ -1,11 +1,10 @@
 // passar o arquivo api.js do projeto antigo para aqui
-
 import axios from 'axios';
 
 const CHAVE_API = 'c0638c53fbmsh2868ca454b8bb8ap157f12jsn6ac238ea433c';
 const HOST_API = 'api-nba-v1.p.rapidapi.com';
 
-export const buscarAtletas = async (busca: string) => {
+export const buscarAtletas = async (busca) => {
   const options = {
     method: 'GET',
     url: 'https://api-nba-v1.p.rapidapi.com/players',
