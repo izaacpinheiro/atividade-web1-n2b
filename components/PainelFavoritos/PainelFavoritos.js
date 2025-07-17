@@ -1,12 +1,13 @@
 // passar o arquivo PainelFavoritos.jsx do projeto antigo para aqui
 
 import {
-    Dimensions,
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    View
+  Dimensions,
+  FlatList,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;

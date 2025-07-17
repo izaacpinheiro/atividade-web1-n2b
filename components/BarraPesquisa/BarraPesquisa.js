@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
-import { buscarAtletas } from '../api'; // ajuste o caminho se necessário
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { buscarAtletas } from '../../api/api';
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
