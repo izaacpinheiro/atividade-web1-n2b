@@ -1,1 +1,0 @@
-// passar o arquivo BarraPesquisa.jsx do projeto antigo para aqui
