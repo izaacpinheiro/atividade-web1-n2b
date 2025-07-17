@@ -1,7 +1,4 @@
-// arquivo raiz do React Native, o App.js do projeto antigo
-
-/*
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 
 import BarraPesquisa from '../components/BarraPesquisa/BarraPesquisa';
@@ -12,7 +9,7 @@ export default function Home() {
   const [atletas, setAtletas] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
 
-  const adicionarAosFavoritos = (atleta: any) => {
+  const adicionarAosFavoritos = (atleta) => {
     if (!favoritos.find(f => f.id === atleta.id)) {
       setFavoritos([...favoritos, atleta]);
     } else {
@@ -70,4 +67,3 @@ const styles = StyleSheet.create({
     gap: 12,
   },
 });
-*/
