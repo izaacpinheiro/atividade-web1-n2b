@@ -1,14 +1,12 @@
-// passar o arquivo CardAtleta.jsx do projeto antigo para aqui
-
 import { useState } from 'react';
 import {
-    Animated,
-    Image,
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Animated,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function CardAtleta({ atleta, onFavoritar }) {
