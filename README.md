@@ -1,6 +1,15 @@
 # Projeto React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Antes de mexer no projeto confira se tem isso no pc:
+
+1. node
+2. npm
+3. npx
+
+Vamos precisar do Expo para visualização, então baixe assim:
+   ```bash
+   npm install -g expo-cli
+   ```
 
 ## Como iniciar o projeto
 
