@@ -26,13 +26,6 @@ Vamos precisar do Expo para visualização, então baixe assim:
    ```bash
    npx expo start
    ```
+Para visualizar no PC basta clica "w" no terminal apos o start
 
 - [Expo Go](https://expo.dev/go) -> Para ver no celular como ficou o resultado
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
