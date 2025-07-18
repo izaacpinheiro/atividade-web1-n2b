@@ -1,27 +1,24 @@
-# Welcome to your Expo app 👋
+# Projeto React Native
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+## Como iniciar o projeto
 
-1. Install dependencies
+1. Clone o projeto
+
+2. Instale as dependências
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Starte a aplicação
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), -> ESTAMOS USANDO ESSE PARA VER NO CELULAR
+- [Expo Go](https://expo.dev/go) -> Para ver no celular como ficou o resultado
 
 ## Get a fresh project
 
@@ -30,5 +27,3 @@ When you're ready, run:
 ```bash
 npm run reset-project
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
