@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import BarraPesquisa from '../components/BarraPesquisa/BarraPesquisa';
 import CardAtleta from '../components/CardAtleta/CardAtleta';
@@ -8,12 +8,15 @@ import PainelFavoritos from '../components/PainelFavoritos/PainelFavoritos';
 export default function Home() {
   const [atletas, setAtletas] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
+  const { width } = useWindowDimensions();
+
+  const numColumns = Math.floor(width / 180);
 
   const adicionarAosFavoritos = (atleta) => {
     if (!favoritos.find(f => f.id === atleta.id)) {
       setFavoritos([...favoritos, atleta]);
     } else {
-      Alert.alert('Já está nos favoritos!');
+      Alert.alert('Este atleta já está nos favoritos!');
     }
   };
 
@@ -30,8 +33,9 @@ export default function Home() {
       <FlatList
         data={atletas}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        contentContainerStyle={styles.cardsGrid}
+        numColumns={numColumns}
+        contentContainerStyle={styles.cardsContainer}
+        columnWrapperStyle={styles.rowLayout}
         renderItem={({ item }) => (
           <CardAtleta atleta={item} onFavoritar={adicionarAosFavoritos} />
         )}
@@ -45,6 +49,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 8,
     paddingTop: 50,
     paddingHorizontal: 16,
     backgroundColor: '#fff',
@@ -63,7 +68,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
   },
-  cardsGrid: {
-    gap: 12,
+  cardsContainer: {
+    paddingBottom: 20,
+  },
+  rowLayout: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  cardWrapper: {
+    flex: 1 / 3,
+    marginHorizontal: 4,
   },
 });

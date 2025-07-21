@@ -6,10 +6,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  useWindowDimensions,
 } from 'react-native';
 
 export default function CardAtleta({ atleta, onFavoritar }) {
+  const { width } = useWindowDimensions();
+  const isLargeScreen = width >= 768;
   const [imageSource, setImageSource] = useState({
     uri: `https://cdn.nba.com/headshots/nba/latest/260x190/${atleta?.id || '000'}.png`,
   });
@@ -55,7 +58,15 @@ export default function CardAtleta({ atleta, onFavoritar }) {
   };
 
   return (
-    <Animated.View style={[styles.card, { transform: [{ scale: scaleAnim }] }]}>
+    <Animated.View 
+      style={[
+        styles.card, 
+        { 
+          transform: [{ scale: scaleAnim }],
+          width: isLargeScreen ? '31%' : '100%',
+          margin: isLargeScreen ? 5 : 10,
+        }
+      ]}>
       <Text style={styles.name}>
         {safeAtleta.firstname} {safeAtleta.lastname}
       </Text>
@@ -95,12 +106,14 @@ export default function CardAtleta({ atleta, onFavoritar }) {
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
+    minWidth: 150,
+    maxWidth: 300,
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 8,
-    padding: 15,
-    margin: 10,
-    width: 250,
+    padding: 12,
+    margin: 4,
     backgroundColor: 'white',
     ...Platform.select({
       ios: {
