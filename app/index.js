@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, FlatList, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 
 import BarraPesquisa from '../components/BarraPesquisa/BarraPesquisa';
 import CardAtleta from '../components/CardAtleta/CardAtleta';
@@ -24,12 +24,23 @@ export default function Home() {
     setFavoritos(favoritos.filter(f => f.id !== atleta.id));
   };
 
+  const limparPesquisa = () => {
+    setAtletas([]);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>BUSCA DE ATLETAS DA NBA 🏀</Text>
 
       <View style={styles.pesquisa}>
         <BarraPesquisa onSearch={setAtletas} />
+        {atletas.length > 0 && (
+          <View style={styles.limparContainer}>
+            <TouchableOpacity style={styles.limparButton} onPress={limparPesquisa}>
+              <Text style={styles.limparButtonText}>Limpar Pesquisa</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       <Text style={styles.subtitulo}>Resultados da Busca</Text>
@@ -43,6 +54,9 @@ export default function Home() {
         renderItem={({ item }) => (
           <CardAtleta atleta={item} onFavoritar={adicionarAosFavoritos} />
         )}
+        ListEmptyComponent={
+          <Text style={styles.listaVazia}>Nenhum atleta encontrado.</Text>
+        }
       />
 
       <PainelFavoritos favoritos={favoritos} onRemoveFavorito={removeFavorito} />
@@ -83,5 +97,30 @@ const styles = StyleSheet.create({
   cardWrapper: {
     flex: 1 / 3,
     marginHorizontal: 4,
+  },
+  listaVazia: {
+    textAlign: 'center',
+    color: '#666',
+    marginTop: 20,
+  },
+  pesquisaContainer: {
+    marginBottom: 20,
+  },
+  limparContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  limparButton: {
+    backgroundColor: '#d32f2f',
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    minWidth: 150,
+  },
+  limparButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
