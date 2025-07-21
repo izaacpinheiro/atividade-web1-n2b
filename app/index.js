@@ -20,9 +20,13 @@ export default function Home() {
     }
   };
 
+  const removeFavorito = (atleta) => {
+    setFavoritos(favoritos.filter(f => f.id !== atleta.id));
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Busca de Atletas da NBA</Text>
+      <Text style={styles.titulo}>BUSCA DE ATLETAS DA NBA 🏀</Text>
 
       <View style={styles.pesquisa}>
         <BarraPesquisa onSearch={setAtletas} />
@@ -41,7 +45,7 @@ export default function Home() {
         )}
       />
 
-      <PainelFavoritos favoritos={favoritos} />
+      <PainelFavoritos favoritos={favoritos} onRemoveFavorito={removeFavorito} />
     </View>
   );
 }

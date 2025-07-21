@@ -5,12 +5,13 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
-export default function PainelFavoritos({ favoritos }) {
+export default function PainelFavoritos({ favoritos, onRemoveFavorito }) {
   if (favoritos.length === 0) {
     return (
       <View style={styles.emptyState}>
@@ -18,7 +19,7 @@ export default function PainelFavoritos({ favoritos }) {
           source={{ uri: 'https://via.placeholder.com/200?text=Sem+Favoritos' }}
           style={styles.emptyImage}
         />
-        <Text style={styles.emptyText}>Nenhum atleta favoritado</Text>
+        <Text style={styles.emptyText}>Nenhum atleta favoritado.</Text>
       </View>
     );
   }
@@ -34,7 +35,7 @@ export default function PainelFavoritos({ favoritos }) {
 
       <FlatList
         data={favoritos}
-        numColumns={Math.floor(screenWidth / 220)} // responsivo
+        numColumns={Math.floor(screenWidth / 220)}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.favoritosGrid}
         renderItem={({ item }) => (
@@ -57,10 +58,12 @@ export default function PainelFavoritos({ favoritos }) {
               <Text style={styles.country}>ID: {item.id}</Text>
             </View>
 
-            {/* Botão de remoção pode ser implementado depois */}
-            {/* <TouchableOpacity style={styles.removeBtn}>
+            <TouchableOpacity 
+              style={styles.removeBtn}
+              onPress={() => onRemoveFavorito(item)}  
+            >
               <Text style={styles.removeText}>×</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -95,10 +98,10 @@ const styles = StyleSheet.create({
   panelTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#0a84ff', // substituto para var(--primary)
+    color: '#0a84ff',
   },
   badge: {
-    backgroundColor: '#f57c00', // substituto para var(--accent)
+    backgroundColor: '#f57c00',
     borderRadius: 50,
     width: 25,
     height: 25,
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     minWidth: 200,
     maxWidth: 300,
     borderLeftWidth: 4,
-    borderLeftColor: '#f57c00', // var(--accent)
+    borderLeftColor: '#f57c00',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -170,19 +173,22 @@ const styles = StyleSheet.create({
     color: '#666',
     fontStyle: 'italic',
   },
-  // removeBtn: {
-  //   position: 'absolute',
-  //   top: -8,
-  //   right: -8,
-  //   backgroundColor: '#d32f2f', // var(--danger)
-  //   borderRadius: 50,
-  //   width: 25,
-  //   height: 25,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // removeText: {
-  //   color: 'white',
-  //   fontSize: 16,
-  // },
+  removeBtn: {
+    position: 'absolute',
+    top: -8,
+    right: -8,
+    backgroundColor: '#d32f2f',
+    borderRadius: 50,
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+  removeText: {
+    color: 'white',
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: 'bold',
+  },
 });
