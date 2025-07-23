@@ -55,7 +55,7 @@ export default function Home() {
           <CardAtleta atleta={item} onFavoritar={adicionarAosFavoritos} />
         )}
         ListEmptyComponent={
-          <Text style={styles.listaVazia}>Nenhum atleta encontrado.</Text>
+          <Text style={styles.listaVazia}>Nenhum atleta pesquisado.</Text>
         }
       />
 
