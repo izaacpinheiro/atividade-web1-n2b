@@ -61,12 +61,9 @@ export default function CardAtleta({ atleta, onFavoritar }) {
     <Animated.View 
       style={[
         styles.card, 
-        { 
-          transform: [{ scale: scaleAnim }],
-          width: isLargeScreen ? '31%' : '100%',
-          margin: isLargeScreen ? 5 : 10,
-        }
-      ]}>
+        { transform: [{scale:scaleAnim }] }
+      ]}
+    >
       <Text style={styles.name}>
         {safeAtleta.firstname} {safeAtleta.lastname}
       </Text>

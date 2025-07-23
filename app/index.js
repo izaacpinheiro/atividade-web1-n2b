@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, FlatList, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 
 import BarraPesquisa from '../components/BarraPesquisa/BarraPesquisa';
 import CardAtleta from '../components/CardAtleta/CardAtleta';
@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.titulo}>BUSCA DE ATLETAS DA NBA 🏀</Text>
 
       <View style={styles.pesquisa}>
@@ -45,22 +45,21 @@ export default function Home() {
 
       <Text style={styles.subtitulo}>Resultados da Busca</Text>
 
-      <FlatList
-        data={atletas}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={numColumns}
-        contentContainerStyle={styles.cardsContainer}
-        columnWrapperStyle={styles.rowLayout}
-        renderItem={({ item }) => (
-          <CardAtleta atleta={item} onFavoritar={adicionarAosFavoritos} />
-        )}
-        ListEmptyComponent={
-          <Text style={styles.listaVazia}>Nenhum atleta pesquisado.</Text>
-        }
-      />
+      <View style={styles.cardGrid}>
+        {atletas.map((item) => (
+          <View
+            key={item.id}
+            style={[styles.cardWrapper, width < 600 ? styles.cardMobile : styles.cardDesktop]}
+          >
+            <CardAtleta atleta={item} onFavoritar={adicionarAosFavoritos} />
+          </View>
+        ))}
+      </View>
 
+      <View style={styles.divider} />
       <PainelFavoritos favoritos={favoritos} onRemoveFavorito={removeFavorito} />
-    </View>
+      
+    </ScrollView>
   );
 }
 
@@ -94,10 +93,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
   },
-  cardWrapper: {
-    flex: 1 / 3,
-    marginHorizontal: 4,
-  },
   listaVazia: {
     textAlign: 'center',
     color: '#666',
@@ -122,5 +117,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  cardGrid: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-around',
+},
+  cardWrapper: {
+    marginBottom: 16,
+    marginHorizontal: 8,
+  },
+  cardDesktop: {
+    width: '30%',
+  },
+  cardMobile: {
+    width: '100%',
+  },
+  scrollContainer: {
+    padding: 16,
+    paddingBottom: 32,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#ccc',
+    marginVertical: 32,
   },
 });

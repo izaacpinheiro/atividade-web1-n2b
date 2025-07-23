@@ -12,18 +12,6 @@ import {
 const screenWidth = Dimensions.get('window').width;
 
 export default function PainelFavoritos({ favoritos, onRemoveFavorito }) {
-  if (favoritos.length === 0) {
-    return (
-      <View style={styles.emptyState}>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/200?text=Sem+Favoritos' }}
-          style={styles.emptyImage}
-        />
-        <Text style={styles.emptyText}>Nenhum atleta favoritado.</Text>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.panel}>
       <View style={styles.panelHeader}>
@@ -33,40 +21,45 @@ export default function PainelFavoritos({ favoritos, onRemoveFavorito }) {
         </View>
       </View>
 
-      <FlatList
-        data={favoritos}
-        numColumns={Math.floor(screenWidth / 220)}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.favoritosGrid}
-        renderItem={({ item }) => (
-          <View style={styles.favoritoCard}>
-            <Image
-              source={{
-                uri: `https://cdn.nba.com/headshots/nba/latest/260x190/${item.id}.png`,
-              }}
-              style={styles.avatar}
-              onError={(e) => {
-                e.nativeEvent.target.setNativeProps({
-                  src: [{ uri: 'https://via.placeholder.com/50x50?text=Img' }],
-                });
-              }}
-            />
-            <View style={styles.favoritoInfo}>
-              <Text style={styles.name}>
-                {item.firstname} {item.lastname}
-              </Text>
-              <Text style={styles.country}>ID: {item.id}</Text>
-            </View>
+      {favoritos.length === 0 ? (
+        <View style={styles.emptyState}>
+          <Image
+            source={{ uri: 'https://via.placeholder.com/200?text=Sem+Favoritos' }}
+            style={styles.emptyImage}
+          />
+          <Text style={styles.emptyText}>Nenhum atleta favoritado.</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={favoritos}
+          numColumns={Math.floor(screenWidth / 220)}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.favoritosGrid}
+          renderItem={({ item }) => (
+            <View style={styles.favoritoCard}>
+              <Image
+                source={{
+                  uri: `https://cdn.nba.com/headshots/nba/latest/260x190/${item.id}.png`,
+                }}
+                style={styles.avatar}
+              />
+              <View style={styles.favoritoInfo}>
+                <Text style={styles.name}>
+                  {item.firstname} {item.lastname}
+                </Text>
+                <Text style={styles.country}>ID: {item.id}</Text>
+              </View>
 
-            <TouchableOpacity 
-              style={styles.removeBtn}
-              onPress={() => onRemoveFavorito(item)}  
-            >
-              <Text style={styles.removeText}>×</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+              <TouchableOpacity
+                style={styles.removeBtn}
+                onPress={() => onRemoveFavorito(item)}
+              >
+                <Text style={styles.removeText}>×</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
+      )}
     </View>
   );
 }
