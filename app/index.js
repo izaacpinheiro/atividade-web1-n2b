@@ -10,8 +10,6 @@ export default function Home() {
   const [favoritos, setFavoritos] = useState([]);
   const { width } = useWindowDimensions();
 
-  const numColumns = Math.floor(width / 180);
-
   const adicionarAosFavoritos = (atleta) => {
     if (!favoritos.find(f => f.id === atleta.id)) {
       setFavoritos([...favoritos, atleta]);
@@ -58,7 +56,7 @@ export default function Home() {
 
       <View style={styles.divider} />
       <PainelFavoritos favoritos={favoritos} onRemoveFavorito={removeFavorito} />
-      
+
     </ScrollView>
   );
 }
