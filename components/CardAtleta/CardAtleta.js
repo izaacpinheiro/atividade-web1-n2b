@@ -7,12 +7,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  useWindowDimensions,
 } from 'react-native';
 
 export default function CardAtleta({ atleta, onFavoritar }) {
-  const { width } = useWindowDimensions();
-  const isLargeScreen = width >= 768;
   const [imageSource, setImageSource] = useState({
     uri: `https://cdn.nba.com/headshots/nba/latest/260x190/${atleta?.id || '000'}.png`,
   });
